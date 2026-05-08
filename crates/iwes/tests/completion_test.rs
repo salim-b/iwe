@@ -72,12 +72,20 @@ fn completion_test_with_refs_extension() {
 fn completion_relative_test() {
     Fixture::with_options_and_client(
         vec![
-            ("dir/sub".to_string(), indoc! {"
+            (
+                "dir/sub".to_string(),
+                indoc! {"
                 # sub-document
-            "}.to_string()),
-            ("top".to_string(), indoc! {"
+            "}
+                .to_string(),
+            ),
+            (
+                "top".to_string(),
+                indoc! {"
                 # top-level
-            "}.to_string()),
+            "}
+                .to_string(),
+            ),
         ]
         .into_iter()
         .collect(),
@@ -144,12 +152,20 @@ fn completion_relative_test_with_refs_extension() {
 fn completion_after_file_deleted() {
     Fixture::with_options_and_client(
         vec![
-            ("first".to_string(), indoc! {"
+            (
+                "first".to_string(),
+                indoc! {"
                 # first-document
-            "}.to_string()),
-            ("second".to_string(), indoc! {"
+            "}
+                .to_string(),
+            ),
+            (
+                "second".to_string(),
+                indoc! {"
                 # second-document
-            "}.to_string()),
+            "}
+                .to_string(),
+            ),
         ]
         .into_iter()
         .collect(),
@@ -204,12 +220,7 @@ fn completion_with_wikilink_format() {
     )
     .completion(
         uri(1).to_completion_params(2, 0),
-        completion_list(vec![completion_item(
-            "🔗 test",
-            "[[1]]",
-            "test",
-            "test",
-        )]),
+        completion_list(vec![completion_item("🔗 test", "[[1]]", "test", "test")]),
     );
 }
 
@@ -225,12 +236,20 @@ fn completion_with_wikilink_format_multiple_documents() {
 
     Fixture::with_options_and_client(
         vec![
-            ("first".to_string(), indoc! {"
+            (
+                "first".to_string(),
+                indoc! {"
                 # First Document
-            "}.to_string()),
-            ("second".to_string(), indoc! {"
+            "}
+                .to_string(),
+            ),
+            (
+                "second".to_string(),
+                indoc! {"
                 # Second Document
-            "}.to_string()),
+            "}
+                .to_string(),
+            ),
         ]
         .into_iter()
         .collect(),
@@ -309,12 +328,7 @@ fn completion_with_wikilink_and_refs_extension() {
     )
     .completion(
         uri(1).to_completion_params(2, 0),
-        completion_list(vec![completion_item(
-            "🔗 test",
-            "[[1]]",
-            "test",
-            "test",
-        )]),
+        completion_list(vec![completion_item("🔗 test", "[[1]]", "test", "test")]),
     );
 }
 
@@ -341,7 +355,8 @@ fn completion_uses_frontmatter_title() {
                 ---
 
                 # Header
-            "}.to_string(),
+            "}
+            .to_string(),
         )]
         .into_iter()
         .collect(),
@@ -379,7 +394,8 @@ fn completion_fallback_to_header_when_frontmatter_missing() {
             "doc".to_string(),
             indoc! {"
                 # Header Title
-            "}.to_string(),
+            "}
+            .to_string(),
         )]
         .into_iter()
         .collect(),
@@ -406,7 +422,8 @@ fn completion_returns_empty_when_prefix_too_short() {
             indoc! {"
                 # Test
                 ab
-            "}.to_string(),
+            "}
+            .to_string(),
         )]
         .into_iter()
         .collect(),
@@ -456,7 +473,8 @@ fn completion_respects_custom_min_prefix_length() {
             indoc! {"
                 # Test
                 abcd
-            "}.to_string(),
+            "}
+            .to_string(),
         )]
         .into_iter()
         .collect(),

@@ -1,0 +1,16 @@
+EXAMPLES:
+
+  # Bash – add to ~/.bashrc
+  source <(iwe completions bash)
+
+  # Zsh – write to a file on $fpath
+  iwe completions zsh > ~/.zfunc/_iwe
+
+  # Fish
+  iwe completions fish > ~/.config/fish/completions/iwe.fish
+
+  # Elvish
+  iwe completions elvish > ~/.config/elvish/lib/iwe.elv
+
+  # PowerShell – add to $PROFILE
+  iwe completions powershell | Out-String | Invoke-Expression

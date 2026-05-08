@@ -196,10 +196,7 @@ fn definition_external_http_url() {
             [example](http://example.com)
 
             "})
-    .go_to_definition_external(
-        uri(1).to_goto_definition_params(2, 5),
-        "http://example.com",
-    );
+    .go_to_definition_external(uri(1).to_goto_definition_params(2, 5), "http://example.com");
 }
 
 #[test]
