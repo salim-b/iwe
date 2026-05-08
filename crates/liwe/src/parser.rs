@@ -54,7 +54,9 @@ impl Parser {
             let url_part = &line[absolute_start..];
 
             let end = url_part
-                .find(|c: char| c.is_whitespace() || c == ')' || c == ']' || c == '>' || c == '"' || c == '\'')
+                .find(|c: char| {
+                    c.is_whitespace() || c == ')' || c == ']' || c == '>' || c == '"' || c == '\''
+                })
                 .unwrap_or(url_part.len());
 
             let url = &url_part[..end];

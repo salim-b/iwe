@@ -1,0 +1,4 @@
+Generate shell completion scripts for `iwe`.
+
+Prints the completion script to stdout so it can be sourced or saved to a file.
+Supported shells: bash, elvish, fish, powershell, zsh.

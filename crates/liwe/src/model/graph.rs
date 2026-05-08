@@ -93,7 +93,9 @@ impl GraphBlock {
 
     pub fn to_markdown(&self, options: &MarkdownOptions) -> String {
         match self {
-            GraphBlock::Frontmatter(mapping) => format!("---\n{}---\n", frontmatter_to_yaml(mapping)),
+            GraphBlock::Frontmatter(mapping) => {
+                format!("---\n{}---\n", frontmatter_to_yaml(mapping))
+            }
             GraphBlock::Plain(inlines) => format!("{}\n", inlines_to_markdown(inlines, options)),
             GraphBlock::Para(inlines) => format!("{}\n", inlines_to_markdown(inlines, options)),
             GraphBlock::LineBlock(lines) => lines
@@ -109,7 +111,13 @@ impl GraphBlock {
                 lang.clone()
                     .filter(|lang| !lang.trim().is_empty())
                     .map(|lang| {
-                        format!("{} {}\n{}\n{}\n", fence, lang, text.trim_matches('\n'), fence)
+                        format!(
+                            "{} {}\n{}\n{}\n",
+                            fence,
+                            lang,
+                            text.trim_matches('\n'),
+                            fence
+                        )
                     })
                     .unwrap_or_else(|| {
                         format!("{}\n{}\n{}\n", fence, text.trim_matches('\n'), fence)
@@ -225,10 +233,7 @@ impl GraphInline {
                     }
                     ReferenceType::WikiLink => format!("[[{}]]", url),
                     ReferenceType::Regular => {
-                        format!(
-                            "[{}]({}{})",
-                            reference.text, url, options.refs_extension
-                        )
+                        format!("[{}]({}{})", reference.text, url, options.refs_extension)
                     }
                 }
             }
@@ -432,7 +437,12 @@ fn left_pad_and_prefix(text: &str, list_token: &str) -> String {
 }
 
 fn left_pad_and_prefix_num(text: &str, num: usize, ordered_list_token: char) -> String {
-    let prefix = format!("{}{}{}", num, ordered_list_token, if num > 9 { "" } else { " " });
+    let prefix = format!(
+        "{}{}{}",
+        num,
+        ordered_list_token,
+        if num > 9 { "" } else { " " }
+    );
     let mut result = String::new();
     for (n, line) in text.lines().enumerate() {
         if line.is_empty() {

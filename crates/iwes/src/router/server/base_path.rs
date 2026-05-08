@@ -93,10 +93,7 @@ mod tests {
         let base_path = BasePath::from_path("/path with spaces/docs");
         let key = liwe::model::Key::name("test.md");
         let url = base_path.key_to_url(&key);
-        assert_eq!(
-            url.to_string(),
-            "file:///path%20with%20spaces/docs/test.md"
-        );
+        assert_eq!(url.to_string(), "file:///path%20with%20spaces/docs/test.md");
     }
 
     #[test]
@@ -112,9 +109,6 @@ mod tests {
         let base_path = BasePath::from_path("/basepath");
         let key = liwe::model::Key::name("my document.md");
         let url = base_path.key_to_url(&key);
-        assert_eq!(
-            url.to_string(),
-            "file:///basepath/my%20document.md"
-        );
+        assert_eq!(url.to_string(), "file:///basepath/my%20document.md");
     }
 }

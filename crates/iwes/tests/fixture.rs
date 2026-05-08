@@ -444,11 +444,7 @@ impl Fixture {
         Self::with_options_and_client(from_indoc(indoc), config, "", None)
     }
 
-    pub fn with_config_and_now(
-        indoc: &str,
-        config: Configuration,
-        now: SystemTime,
-    ) -> Fixture {
+    pub fn with_config_and_now(indoc: &str, config: Configuration, now: SystemTime) -> Fixture {
         Self::with_options_and_client(from_indoc(indoc), config, "", Some(now))
     }
 
@@ -888,4 +884,3 @@ mod tests {
         assert!(code_action.edit.is_some());
     }
 }
-
